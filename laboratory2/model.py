@@ -54,8 +54,8 @@ class TrendSpreadModel(Model):
 
         self.generate_person_agents()
         self.generate_influencer_agents()
-        # self.generate_sport_facility_locations(grid_width, grid_height, sport_facility_number)
-        # self.initialize_data_collector()
+        self.generate_sport_facility_locations(grid_width, grid_height, sport_facility_number)
+        self.initialize_data_collector()
 
 
     def generate_person_agents(self):
@@ -184,7 +184,7 @@ class TrendSpreadModel(Model):
         '''
         Method that advances the simulation by one tick.
         ''' 
-        # self.datacollector.collect(self)
+        self.datacollector.collect(self)
         self._agents_by_type[PersonAgent].do('move_around')
         self._agents_by_type[PersonAgent].do('spread_news')
 
@@ -206,7 +206,7 @@ class TrendSpreadModel(Model):
             else:
                 agents.do('move_around')
 
-        # influencer_agents.do('spread_news_on_event', regular_agents)
+        influencer_agents.do('spread_news_on_event', regular_agents)
         
 
 

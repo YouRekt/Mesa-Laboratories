@@ -95,8 +95,7 @@ class PersonAgent(Grid2DMovingAgent, TrendSpreadingAgent):
         '''
         self.trend_gossip_counter += 1
 
-        skepticism_prob = 0.2 
-        # if self.cell.properties['sport_facility'] else self._skepticism_prob
+        skepticism_prob = 0 if self.cell.properties['sport_facility'] else self._skepticism_prob
         
         if self.random.random() > skepticism_prob:
             self._knows_about_trend = True
@@ -164,12 +163,11 @@ class InfluencerAgent(Agent, TrendSpreadingAgent):
         Method that makes the agent spread the news among their followers.
         '''
         for agent in followers:
-            if self.random.random() < 0.5:
-                logger.info(f'[{self._type} {self.unique_id}] I passed information about the trend to {agent.unique_id}!')
+            logger.info(f'[{self._type} {self.unique_id}] I passed information about the trend to {agent.unique_id}!')
 
-                self.reached_followers_counter += 1
-                self.model.indirect_interactions_count += 1
-                agent.learn_about_trend(self.unique_id, False)
+            self.reached_followers_counter += 1
+            self.model.indirect_interactions_count += 1
+            agent.learn_about_trend(self.unique_id, False)
 
     
     def spread_news_on_event(self, event_participants: AgentSet):

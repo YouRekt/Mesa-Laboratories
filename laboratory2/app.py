@@ -86,7 +86,9 @@ def get_trend_spread_per_agent(model: TrendSpreadModel):
 
 
 model = TrendSpreadModel(10, 1, 3, 10, 10)
-grid_visualization = make_space_component(agent_portrayal)
+grid_visualization = make_space_component(agent_portrayal, propertylayer_portrayal=propertylayer_portrayal)
+
+
 trend_spread_visualization = make_plot_component('Knows_Trend')
 trend_spread_success = make_plot_component({"Direct_Interaction_Success_Ratio": "tab:red", 
                                             "Indirect_Interaction_Success_Ratio": "tab:green"})
@@ -94,11 +96,11 @@ trend_spread_success = make_plot_component({"Direct_Interaction_Success_Ratio": 
 
 page = SolaraViz(
     model,
-    components=[grid_visualization], 
-                # trend_spread_visualization,
-                # trend_spread_success,
-                # get_trend_spread_per_agent,
-                # get_total_interactions],
+    components=[grid_visualization, 
+                trend_spread_visualization,
+                trend_spread_success,
+                get_trend_spread_per_agent,
+                get_total_interactions],
     model_params=model_params,
     name="Trend Spreading Model",
 )

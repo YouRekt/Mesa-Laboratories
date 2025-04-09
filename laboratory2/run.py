@@ -1,5 +1,4 @@
 import logging
-import matplotlib.pyplot as plt
 
 from mesa.batchrunner import batch_run
 from model import TrendSpreadModel
